@@ -1,6 +1,4 @@
 
-package p04;
-
 import java.util.GregorianCalendar;
 import java.util.Random;
 
