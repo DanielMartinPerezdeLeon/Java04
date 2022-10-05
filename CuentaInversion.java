@@ -21,15 +21,52 @@ public class CuentaInversion extends Cuenta{
     final int MINIMO = -10;
     
     int beneficio;
-    //Atributo libre;
+    boolean estudiante;
 
-    public CuentaInversion(int sal, int salMin, String prop, GregorianCalendar f, int beneficio) {
+    public CuentaInversion() {
+        super();
+        Random aleatorio = new Random();
+        int ran = MINIMO + aleatorio.nextInt() % MAXIMO - MINIMO + 1;
+        this.beneficio = ran;
+        this.estudiante = false;
+    }
+
+    public CuentaInversion(int beneficio, boolean estudiante, int saldo, int saldominimo, String propietario) {
+        super(saldo, saldominimo, propietario);
+        Random aleatorio = new Random();
+        int ran = MINIMO + aleatorio.nextInt() % MAXIMO - MINIMO + 1;
+        this.beneficio = ran;
+        this.estudiante = estudiante;
+    }
+    
+    public CuentaInversion(int sal, int salMin, String prop, GregorianCalendar f, boolean estudiante) {
         super(sal, salMin, prop, f);
         Random aleatorio = new Random();
         int ran = MINIMO + aleatorio.nextInt() % MAXIMO - MINIMO + 1;
         this.beneficio = ran;
+        this.estudiante = estudiante;
     }
 
+    //GETTER
+    public int getBeneficio() {
+        return beneficio;
+    }
+
+    public boolean isEstudiante() {
+        return estudiante;
+    }
+
+    //SETTER
+    public void setBeneficio(int beneficio) {
+        this.beneficio = beneficio;
+    }
+
+    public void setEstudiante(boolean estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    
+    
     
     
     
