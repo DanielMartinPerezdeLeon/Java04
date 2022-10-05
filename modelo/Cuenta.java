@@ -25,12 +25,12 @@ public class Cuenta {
         this.fecha = new GregorianCalendar();
     }
 
-    public Cuenta(int saldo, int saldominimo, String propietario) {
+    public Cuenta(int saldo, int saldoMinimo, String propietario) {
         this();
-        this.saldoMinimo = saldominimo;
-        this.saldo = saldo;
         this.propietario = propietario;
-
+        comprobarSaldo(saldo, saldoMinimo);
+        this.saldoMinimo = saldoMinimo;
+        this.saldo = saldo;
     }
 
     public Cuenta(int saldo, int saldominimo, String propietario, GregorianCalendar fecha) {
@@ -39,7 +39,7 @@ public class Cuenta {
 
     }
     
-    public void comprobarSaldo(){
+    public void comprobarSaldo(int saldo, int saldoMinimo) throws Error{
         if(saldo<saldoMinimo){
             throw new Error("Error. El saldo es inferior al saldo minimo.");
         }
