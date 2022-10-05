@@ -1,3 +1,4 @@
+package modelo;
 
 import java.util.GregorianCalendar;
 import java.util.Random;
@@ -6,20 +7,17 @@ import java.util.Random;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
- * Cuenta Inversion
- * -Beneficio/Perdida (+-10% saldo)(Trimestral)(Aleatorio)
+ * Cuenta Inversion -Beneficio/Perdida (+-10% saldo)(Trimestral)(Aleatorio)
  * -Atributo libre
- * 
+ *
  * @author carlo
  */
+public class CuentaInversion extends Cuenta {
 
-
-public class CuentaInversion extends Cuenta{
     final int MAXIMO = 10;
     final int MINIMO = -10;
-    
+
     int beneficio;
     boolean estudiante;
 
@@ -38,7 +36,7 @@ public class CuentaInversion extends Cuenta{
         this.beneficio = ran;
         this.estudiante = estudiante;
     }
-    
+
     public CuentaInversion(int sal, int salMin, String prop, GregorianCalendar f, boolean estudiante) {
         super(sal, salMin, prop, f);
         Random aleatorio = new Random();
@@ -65,9 +63,4 @@ public class CuentaInversion extends Cuenta{
         this.estudiante = estudiante;
     }
 
-    
-    
-    
-    
-    
 }
