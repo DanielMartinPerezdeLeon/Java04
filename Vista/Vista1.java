@@ -91,11 +91,11 @@ public class Vista1 extends javax.swing.JFrame {
         botonAnterior = new javax.swing.JButton();
         botonSiguiente = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
-        jMenu11 = new javax.swing.JMenu();
-        jMenu12 = new javax.swing.JMenu();
+        Gurdar = new javax.swing.JMenu();
+        Cargar = new javax.swing.JMenu();
+        Insertar = new javax.swing.JMenu();
+        Visualizar = new javax.swing.JMenu();
+        Ordenar = new javax.swing.JMenu();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -141,35 +141,35 @@ public class Vista1 extends javax.swing.JFrame {
 
         botonSiguiente.setText("SIGUIENTE");
 
-        jMenu1.setText("Guardar");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Gurdar.setText("Guardar");
+        Gurdar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                GurdarMouseClicked(evt);
             }
         });
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        Gurdar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                GurdarActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(Gurdar);
 
-        jMenu2.setText("Cargar");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cargar.setText("Cargar");
+        Cargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                CargarMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(Cargar);
 
-        jMenu10.setText("Insertar");
-        jMenuBar1.add(jMenu10);
+        Insertar.setText("Insertar");
+        jMenuBar1.add(Insertar);
 
-        jMenu11.setText("Visualizar Cuentas");
-        jMenuBar1.add(jMenu11);
+        Visualizar.setText("Visualizar");
+        jMenuBar1.add(Visualizar);
 
-        jMenu12.setText("Ordenar");
-        jMenuBar1.add(jMenu12);
+        Ordenar.setText("Ordenar");
+        jMenuBar1.add(Ordenar);
 
         setJMenuBar(jMenuBar1);
 
@@ -197,11 +197,11 @@ public class Vista1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void GurdarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GurdarActionPerformed
 
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_GurdarActionPerformed
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void GurdarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GurdarMouseClicked
             try {
             ObjectOutputStream guardalista= new ObjectOutputStream(new FileOutputStream(new File("cuentas.dat")));
             
@@ -212,9 +212,9 @@ public class Vista1 extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.err.println("Error grave");
         }
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_GurdarMouseClicked
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+    private void CargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CargarMouseClicked
         try {
             ObjectInputStream cargalista= new ObjectInputStream(new FileInputStream(new File("cuentas.dat")));
             Random aleatorio = new Random();
@@ -238,7 +238,7 @@ public class Vista1 extends javax.swing.JFrame {
         
 
         lista.decirDatos();
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_CargarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -253,14 +253,14 @@ public class Vista1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Cargar;
+    private javax.swing.JMenu Gurdar;
+    private javax.swing.JMenu Insertar;
+    private javax.swing.JMenu Ordenar;
+    private javax.swing.JMenu Visualizar;
     private javax.swing.JButton botonAnterior;
     private javax.swing.JButton botonSiguiente;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
