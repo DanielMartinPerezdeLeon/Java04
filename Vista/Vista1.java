@@ -23,47 +23,26 @@ import modelo.Cuenta;
  */
 public class Vista1 extends javax.swing.JFrame {
 
-   
     Lista lista = new <Cuenta> Lista(1000);
-    
+
     public Vista1() {
         super("BANCO");
-        
-        initComponents();
-       
-        añadirEjemplos(lista);
-        
-        lista.decirDatos();
 
+        initComponents();
+        añadirEjemplos(lista);
+        lista.decirDatos();
     }
-    
-    public void inicializarVista(){
+
+    public void inicializarVista() {
         botonAnterior.setVisible(false);
         botonSiguiente.setVisible(false);
     }
-    
-    
+
     public static void añadirEjemplos(Lista<Cuenta> lista) {    //Añade unas cuentas a la lista
-        lista.insertar(new Cuenta(1200,1, "Antonio"),1);
-        lista.insertar(new Cuenta(150, 1,"Dani"),2);
+        lista.insertar(new Cuenta(1200, 1, "Antonio"), 1);
+        lista.insertar(new Cuenta(150, 1, "Dani"), 2);
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,7 +70,7 @@ public class Vista1 extends javax.swing.JFrame {
         botonAnterior = new javax.swing.JButton();
         botonSiguiente = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Gurdar = new javax.swing.JMenu();
+        Guardar = new javax.swing.JMenu();
         Cargar = new javax.swing.JMenu();
         Insertar = new javax.swing.JMenu();
         Visualizar = new javax.swing.JMenu();
@@ -141,18 +120,18 @@ public class Vista1 extends javax.swing.JFrame {
 
         botonSiguiente.setText("SIGUIENTE");
 
-        Gurdar.setText("Guardar");
-        Gurdar.addMouseListener(new java.awt.event.MouseAdapter() {
+        Guardar.setText("Guardar");
+        Guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                GurdarMouseClicked(evt);
+                GuardarMouseClicked(evt);
             }
         });
-        Gurdar.addActionListener(new java.awt.event.ActionListener() {
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GurdarActionPerformed(evt);
+                GuardarActionPerformed(evt);
             }
         });
-        jMenuBar1.add(Gurdar);
+        jMenuBar1.add(Guardar);
 
         Cargar.setText("Cargar");
         Cargar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -197,45 +176,41 @@ public class Vista1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void GurdarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GurdarActionPerformed
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
 
-    }//GEN-LAST:event_GurdarActionPerformed
+    }//GEN-LAST:event_GuardarActionPerformed
 
-    private void GurdarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GurdarMouseClicked
-            try {
-            ObjectOutputStream guardalista= new ObjectOutputStream(new FileOutputStream(new File("cuentas.dat")));
-            
+    private void GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarMouseClicked
+        try {
+            ObjectOutputStream guardalista = new ObjectOutputStream(new FileOutputStream(new File("cuentas.dat")));
+
             guardalista.writeObject(lista);
-            
+
             guardalista.close();
             System.out.println("Guardado correctamente");
         } catch (IOException ex) {
             System.err.println("Error grave");
         }
-    }//GEN-LAST:event_GurdarMouseClicked
+    }//GEN-LAST:event_GuardarMouseClicked
 
     private void CargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CargarMouseClicked
         try {
-            ObjectInputStream cargalista= new ObjectInputStream(new FileInputStream(new File("cuentas.dat")));
+            ObjectInputStream cargalista = new ObjectInputStream(new FileInputStream(new File("cuentas.dat")));
             Random aleatorio = new Random();
-            
-            Lista listaAux= (Lista) cargalista.readObject();
-            cargalista.close();
-            
-           
 
-            for (int i = 0; listaAux.getVector()[i]!=null && i<listaAux.getVector().length; i++) {
-                lista.insertar(listaAux.getVector()[i].getDatos(), aleatorio.nextInt(99)+1);
+            Lista listaAux = (Lista) cargalista.readObject();
+            cargalista.close();
+
+            for (int i = 0; listaAux.getVector()[i] != null && i < listaAux.getVector().length; i++) {
+                lista.insertar(listaAux.getVector()[i].getDatos(), aleatorio.nextInt(99) + 1);
             }
-                       
+
             System.out.println("Cargado correctamente");
         } catch (IOException ex) {
             System.err.println("Error grave");
         } catch (ClassNotFoundException ex) {
             System.out.println("No se ha encontrado la clase");
         }
-
-        
 
         lista.decirDatos();
     }//GEN-LAST:event_CargarMouseClicked
@@ -254,7 +229,7 @@ public class Vista1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Cargar;
-    private javax.swing.JMenu Gurdar;
+    private javax.swing.JMenu Guardar;
     private javax.swing.JMenu Insertar;
     private javax.swing.JMenu Ordenar;
     private javax.swing.JMenu Visualizar;
