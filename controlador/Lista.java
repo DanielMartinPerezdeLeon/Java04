@@ -1,13 +1,14 @@
 
 package Controlador;
 
+import java.io.Serializable;
 import modelo.Cuenta;
 
 /**
  *
  * @author damar
  */
-public class Lista <T>{
+public class Lista <T> implements Serializable{
     private Nodo[] vector;
     
     public Lista(int tam){
@@ -31,10 +32,20 @@ public class Lista <T>{
     
     
     public void decirDatos(){
-        for(int i=0; vector[i]!=null; i++){
+        for(int i=0; vector[i]!=null && i+1<vector.length; i++){
             Cuenta aux= (Cuenta) vector[i].getDatos();
             System.out.println(aux.getNumero());
         }
     
-}
+    }
+
+    public Nodo[] getVector() {
+        return vector;
+    }
+
+    public void setVector(Nodo[] vector) {
+        this.vector = vector;
+    }
+    
+    
 }

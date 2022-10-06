@@ -1,26 +1,27 @@
 
 package Controlador;
 
+import java.io.Serializable;
 import modelo.Cuenta;
 
 
-public class Nodo <T>{
-    private int numeroCuenta;
+public class Nodo <T> implements Serializable{
+    private int indiceNodo;
     private T datos;
     
     
     public Nodo(T datos, int num){
         this.datos=datos;
         
-        this.numeroCuenta=num;
+        this.indiceNodo=num;
     }
 
-    public int getNumeroCuenta() {
-        return numeroCuenta;
+    public int getIndiceNodo() {
+        return indiceNodo;
     }
 
-    public void setNumeroCuenta(int numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
+    public void setIndiceNodo(int numeroCuenta) {
+        this.indiceNodo = numeroCuenta;
     }
 
     public T getDatos() {

@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
@@ -8,7 +9,7 @@ import java.util.Random;
  *
  * @author damar
  */
-public class Cuenta {
+public class Cuenta implements Serializable{
 
     private int numero;
     private transient String propietario;
