@@ -21,6 +21,8 @@ import modelo.Cuenta;
  *
  * @author damar
  */
+
+
 public class Vista1 extends javax.swing.JFrame {
 
     Lista lista = new <Cuenta> Lista(1000);
@@ -145,6 +147,11 @@ public class Vista1 extends javax.swing.JFrame {
         jMenuBar1.add(Insertar);
 
         Visualizar.setText("Visualizar");
+        Visualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VisualizarMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(Visualizar);
 
         Ordenar.setText("Ordenar");
@@ -206,15 +213,20 @@ public class Vista1 extends javax.swing.JFrame {
     }//GEN-LAST:event_CargarMouseClicked
 
     private void InsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InsertarMouseClicked
-        Insertar insertar= new Insertar();
+        Insertar insertar= new Insertar(lista);
         actualizarPanel(insertar);
     }//GEN-LAST:event_InsertarMouseClicked
+
+    private void VisualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisualizarMouseClicked
+        Visualizar visualizar= new Visualizar(lista);
+        actualizarPanel(visualizar);
+    }//GEN-LAST:event_VisualizarMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-  
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Vista1().setVisible(true);

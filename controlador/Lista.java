@@ -10,8 +10,10 @@ import modelo.Cuenta;
  */
 public class Lista <T> implements Serializable{
     private Nodo[] vector;
+    private int indice;
     
     public Lista(int tam){
+        
         vector = new Nodo[tam];
         
         for(int i=0; i<vector.length; i++){
@@ -45,6 +47,14 @@ public class Lista <T> implements Serializable{
 
     public void setVector(Nodo[] vector) {
         this.vector = vector;
+    }
+
+    public int getIndice() {
+        return indice;
+    }
+
+    public void setIndice(int indice) {
+        this.indice = indice;
     }
     
     

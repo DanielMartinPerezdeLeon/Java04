@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Controlador.Lista;
+
 /**
  *
  * @author damar
@@ -13,7 +15,7 @@ public class Insertar extends javax.swing.JPanel {
     /**
      * Creates new form Insertar
      */
-    public Insertar() {
+    public Insertar(Lista lista) {
         initComponents();
         
         
