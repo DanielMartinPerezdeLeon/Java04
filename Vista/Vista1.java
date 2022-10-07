@@ -33,15 +33,16 @@ public class Vista1 extends javax.swing.JFrame {
         lista.decirDatos();
     }
 
-    public void inicializarVista() {
-        botonAnterior.setVisible(false);
-        botonSiguiente.setVisible(false);
-    }
 
     public static void añadirEjemplos(Lista<Cuenta> lista) {    //Añade unas cuentas a la lista
         lista.insertar(new Cuenta(1200, 1, "Antonio"), 1);
         lista.insertar(new Cuenta(150, 1, "Dani"), 2);
 
+    }
+    
+    public void actualizarPanel(javax.swing.JPanel panel){
+        this.setContentPane(panel);
+        pack();
     }
 
     /**
@@ -67,8 +68,6 @@ public class Vista1 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        botonAnterior = new javax.swing.JButton();
-        botonSiguiente = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         Guardar = new javax.swing.JMenu();
         Cargar = new javax.swing.JMenu();
@@ -116,10 +115,6 @@ public class Vista1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        botonAnterior.setText("ANTERIOR");
-
-        botonSiguiente.setText("SIGUIENTE");
-
         Guardar.setText("Guardar");
         Guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,6 +137,11 @@ public class Vista1 extends javax.swing.JFrame {
         jMenuBar1.add(Cargar);
 
         Insertar.setText("Insertar");
+        Insertar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InsertarMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(Insertar);
 
         Visualizar.setText("Visualizar");
@@ -156,21 +156,11 @@ public class Vista1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(botonAnterior)
-                .addGap(159, 159, 159)
-                .addComponent(botonSiguiente)
-                .addGap(30, 30, 30))
+            .addGap(0, 401, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAnterior)
-                    .addComponent(botonSiguiente))
-                .addGap(38, 38, 38))
+            .addGap(0, 348, Short.MAX_VALUE)
         );
 
         pack();
@@ -215,6 +205,11 @@ public class Vista1 extends javax.swing.JFrame {
         lista.decirDatos();
     }//GEN-LAST:event_CargarMouseClicked
 
+    private void InsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InsertarMouseClicked
+        Insertar insertar= new Insertar();
+        actualizarPanel(insertar);
+    }//GEN-LAST:event_InsertarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -233,8 +228,6 @@ public class Vista1 extends javax.swing.JFrame {
     private javax.swing.JMenu Insertar;
     private javax.swing.JMenu Ordenar;
     private javax.swing.JMenu Visualizar;
-    private javax.swing.JButton botonAnterior;
-    private javax.swing.JButton botonSiguiente;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
