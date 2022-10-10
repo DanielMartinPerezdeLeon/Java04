@@ -1,6 +1,7 @@
 package Vista;
 
 import Controlador.Lista;
+import Controlador.Nodo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -155,6 +156,11 @@ public class Vista1 extends javax.swing.JFrame {
         jMenuBar1.add(Visualizar);
 
         Ordenar.setText("Ordenar");
+        Ordenar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrdenarMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(Ordenar);
 
         setJMenuBar(jMenuBar1);
@@ -209,7 +215,7 @@ public class Vista1 extends javax.swing.JFrame {
             System.out.println("No se ha encontrado la clase");
         }
 
-        lista.decirDatos();
+        lista.decirDatos(); //Muestra el codigo
     }//GEN-LAST:event_CargarMouseClicked
 
     private void InsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InsertarMouseClicked
@@ -221,6 +227,46 @@ public class Vista1 extends javax.swing.JFrame {
         Visualizar visualizar= new Visualizar(lista);
         actualizarPanel(visualizar);
     }//GEN-LAST:event_VisualizarMouseClicked
+
+    private void OrdenarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdenarMouseClicked
+        //System.out.println(lista.getVector()[lista.getIndice()].getIndiceNodo());
+
+        Lista auxLis = lista;
+        int i = 0;
+        boolean fin=false;
+        //fin != true
+        
+        while(fin != true){
+            System.out.println(auxLis.getVector()[i].getIndiceNodo());
+            
+            if(auxLis.getVector()[i+1] == null){
+                System.out.println("Fin");
+                fin = true;
+            }
+            else{
+                if (auxLis.getVector()[i].getIndiceNodo() > auxLis.getVector()[i + 1].getIndiceNodo()) {
+                    System.out.println("Cambio");
+                    Nodo auxNod = auxLis.getVector()[i];
+                    auxLis.getVector()[i] = auxLis.getVector()[i + 1];
+                    auxLis.getVector()[i + 1] = auxNod;
+                }
+                i++;
+            }
+                
+        }
+        
+/*
+        for (int i = 0; auxLis.getVector()[i] == null; i++) {
+            System.out.println(auxLis.getVector()[i].getIndiceNodo());
+            
+            if (auxLis.getVector()[i].getIndiceNodo() > auxLis.getVector()[i + 1].getIndiceNodo()) {
+                System.out.println("Cambio");
+                Nodo auxNod = auxLis.getVector()[i];
+                auxLis.getVector()[i] = auxLis.getVector()[i + 1];
+                auxLis.getVector()[i + 1] = auxNod;
+            }
+        }*/
+    }//GEN-LAST:event_OrdenarMouseClicked
 
     /**
      * @param args the command line arguments
