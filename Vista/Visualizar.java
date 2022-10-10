@@ -20,6 +20,8 @@ public class Visualizar extends javax.swing.JPanel {
     public Visualizar(Lista lis) {
         initComponents();
         
+        botonanterior.setVisible(false);
+        
         lista=lis;
         lis.setIndice(0);
         Cuenta actual = (Cuenta) lista.getVector()[lis.getIndice()].getDatos();
@@ -42,13 +44,22 @@ public class Visualizar extends javax.swing.JPanel {
         Cuenta actual= (Cuenta) lista.getVector()[lista.getIndice()].getDatos();
         
         cambiarDatos(actual);
+        if(lista.getVector()[lista.getIndice()+1] == null)
+            botonsiguiente.setVisible(false);
+        if(lista.getIndice()-1 >= 0)
+            botonanterior.setVisible(true);
     }
     
     public void anterior(Lista lista){
+        
         lista.setIndice(lista.getIndice()-1);
         Cuenta actual= (Cuenta) lista.getVector()[lista.getIndice()].getDatos();
         
         cambiarDatos(actual);
+        if(lista.getIndice()-1 < 0)
+            botonanterior.setVisible(false);
+        if(lista.getVector()[lista.getIndice()+1] != null)
+            botonsiguiente.setVisible(true);
     }
 
     /**
