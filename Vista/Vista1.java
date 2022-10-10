@@ -1,7 +1,6 @@
 package Vista;
 
 import Controlador.Lista;
-import Controlador.Nodo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -71,10 +70,14 @@ public class Vista1 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         Guardar = new javax.swing.JMenu();
         Cargar = new javax.swing.JMenu();
         Insertar = new javax.swing.JMenu();
+        menuahorro = new javax.swing.JMenuItem();
+        menucorriente = new javax.swing.JMenuItem();
+        menuinversion = new javax.swing.JMenuItem();
         Visualizar = new javax.swing.JMenu();
         Ordenar = new javax.swing.JMenu();
 
@@ -116,6 +119,8 @@ public class Vista1 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jMenuItem2.setText("jMenuItem2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Guardar.setText("Guardar");
@@ -145,6 +150,31 @@ public class Vista1 extends javax.swing.JFrame {
                 InsertarMouseClicked(evt);
             }
         });
+
+        menuahorro.setText("Cuenta de Ahorro");
+        menuahorro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuahorroMouseClicked(evt);
+            }
+        });
+        menuahorro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuahorroActionPerformed(evt);
+            }
+        });
+        Insertar.add(menuahorro);
+
+        menucorriente.setText("Cuenta Corriente");
+        menucorriente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menucorrienteActionPerformed(evt);
+            }
+        });
+        Insertar.add(menucorriente);
+
+        menuinversion.setText("Cuenta de Inversion");
+        Insertar.add(menuinversion);
+
         jMenuBar1.add(Insertar);
 
         Visualizar.setText("Visualizar");
@@ -156,11 +186,6 @@ public class Vista1 extends javax.swing.JFrame {
         jMenuBar1.add(Visualizar);
 
         Ordenar.setText("Ordenar");
-        Ordenar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OrdenarMouseClicked(evt);
-            }
-        });
         jMenuBar1.add(Ordenar);
 
         setJMenuBar(jMenuBar1);
@@ -205,7 +230,7 @@ public class Vista1 extends javax.swing.JFrame {
             cargalista.close();
 
             for (int i = 0; listaAux.getVector()[i] != null && i < listaAux.getVector().length; i++) {
-                lista.insertar(listaAux.getVector()[i].getDatos(), aleatorio.nextInt(99) + 1);
+                lista.insertar(listaAux.getVector()[i].getDatos(), aleatorio.nextInt(999) + 1);
             }
 
             System.out.println("Cargado correctamente");
@@ -215,58 +240,29 @@ public class Vista1 extends javax.swing.JFrame {
             System.out.println("No se ha encontrado la clase");
         }
 
-        lista.decirDatos(); //Muestra el codigo
+        lista.decirDatos();
     }//GEN-LAST:event_CargarMouseClicked
 
     private void InsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InsertarMouseClicked
-        Insertar insertar= new Insertar(lista);
-        actualizarPanel(insertar);
     }//GEN-LAST:event_InsertarMouseClicked
 
     private void VisualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisualizarMouseClicked
-        Visualizar visualizar= new Visualizar(lista);
+        Visualizar visualizar = new Visualizar(lista);
         actualizarPanel(visualizar);
     }//GEN-LAST:event_VisualizarMouseClicked
 
-    private void OrdenarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdenarMouseClicked
-        //System.out.println(lista.getVector()[lista.getIndice()].getIndiceNodo());
+    private void menucorrienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menucorrienteActionPerformed
+        Insertar insertar= new Insertar(lista,2);
+        actualizarPanel(insertar);
+    }//GEN-LAST:event_menucorrienteActionPerformed
 
-        Lista auxLis = lista;
-        int i = 0;
-        boolean fin=false;
-        //fin != true
-        
-        while(fin != true){
-            System.out.println(auxLis.getVector()[i].getIndiceNodo());
-            
-            if(auxLis.getVector()[i+1] == null){
-                System.out.println("Fin");
-                fin = true;
-            }
-            else{
-                if (auxLis.getVector()[i].getIndiceNodo() > auxLis.getVector()[i + 1].getIndiceNodo()) {
-                    System.out.println("Cambio");
-                    Nodo auxNod = auxLis.getVector()[i];
-                    auxLis.getVector()[i] = auxLis.getVector()[i + 1];
-                    auxLis.getVector()[i + 1] = auxNod;
-                }
-                i++;
-            }
-                
-        }
-        
-/*
-        for (int i = 0; auxLis.getVector()[i] == null; i++) {
-            System.out.println(auxLis.getVector()[i].getIndiceNodo());
-            
-            if (auxLis.getVector()[i].getIndiceNodo() > auxLis.getVector()[i + 1].getIndiceNodo()) {
-                System.out.println("Cambio");
-                Nodo auxNod = auxLis.getVector()[i];
-                auxLis.getVector()[i] = auxLis.getVector()[i + 1];
-                auxLis.getVector()[i + 1] = auxNod;
-            }
-        }*/
-    }//GEN-LAST:event_OrdenarMouseClicked
+    private void menuahorroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuahorroActionPerformed
+        Insertar insertar= new Insertar(lista,1);
+        actualizarPanel(insertar);
+    }//GEN-LAST:event_menuahorroActionPerformed
+
+    private void menuahorroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuahorroMouseClicked
+    }//GEN-LAST:event_menuahorroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -297,9 +293,13 @@ public class Vista1 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JMenuItem menuahorro;
+    private javax.swing.JMenuItem menucorriente;
+    private javax.swing.JMenuItem menuinversion;
     // End of variables declaration//GEN-END:variables
 }

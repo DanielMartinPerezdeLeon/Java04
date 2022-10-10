@@ -9,7 +9,7 @@ import java.util.Random;
  *
  * @author damar
  */
-public class Cuenta implements Serializable{
+public class Cuenta implements Serializable,IFecha{
 
     private int numero;
     private transient String propietario;
@@ -44,6 +44,22 @@ public class Cuenta implements Serializable{
         if(saldo<saldoMinimo){
             throw new Error("Error. El saldo es inferior al saldo minimo.");
         }
+    }
+    
+    
+    public int dia() {
+        GregorianCalendar fechaActual = new GregorianCalendar();
+        return fechaActual.get(DIA_DEL_MES);
+    }
+
+    public int mes() {
+        GregorianCalendar fechaActual = new GregorianCalendar();
+        return fechaActual.get(MES_DEL_ANO) + 1;
+    }
+
+    public int ano() {
+        GregorianCalendar fechaActual = new GregorianCalendar();
+        return fechaActual.get(ANO);
     }
 
     //GETTER

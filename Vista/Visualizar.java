@@ -13,54 +13,53 @@ import modelo.Cuenta;
  */
 public class Visualizar extends javax.swing.JPanel {
 
-    Lista lista;
+   
 
+    Lista lista;
+    
     public Visualizar(Lista lis) {
         initComponents();
-
+        
         botonanterior.setVisible(false);
-
-        lista = lis;
+        
+        lista=lis;
         lis.setIndice(0);
         Cuenta actual = (Cuenta) lista.getVector()[lis.getIndice()].getDatos();
         cambiarDatos(actual);
-
+        
+        
     }
     
     public void cambiarDatos(Cuenta c){
         areanumero.setText(Integer.toString(c.getNumero()));
         areapropietario.setText(c.getPropietario());
-        areasaldo.setText(Float.toString(c.getSaldo()));
+        areasaldo.setText(Float.toString(c.getNumero()));
         areasaldominimo.setText(Float.toString(c.getSaldominimo()));
-        areafecha.setText(c.getFecha());
+        areafecha.setText("No implementado");
     }
-
-    public void siguiente(Lista lista) {
-
-        lista.setIndice(lista.getIndice() + 1);
-        Cuenta actual = (Cuenta) lista.getVector()[lista.getIndice()].getDatos();
-
+    
+    public void siguiente(Lista lista){
+        
+        lista.setIndice(lista.getIndice()+1);
+        Cuenta actual= (Cuenta) lista.getVector()[lista.getIndice()].getDatos();
+        
         cambiarDatos(actual);
-        if (lista.getVector()[lista.getIndice() + 1] == null) {
+        if(lista.getVector()[lista.getIndice()+1] == null)
             botonsiguiente.setVisible(false);
-        }
-        if (lista.getIndice() - 1 >= 0) {
+        if(lista.getIndice()-1 >= 0)
             botonanterior.setVisible(true);
-        }
     }
-   
-    public void anterior(Lista lista) {
-
-        lista.setIndice(lista.getIndice() - 1);
-        Cuenta actual = (Cuenta) lista.getVector()[lista.getIndice()].getDatos();
-
+    
+    public void anterior(Lista lista){
+        
+        lista.setIndice(lista.getIndice()-1);
+        Cuenta actual= (Cuenta) lista.getVector()[lista.getIndice()].getDatos();
+        
         cambiarDatos(actual);
-        if (lista.getIndice() - 1 < 0) {
+        if(lista.getIndice()-1 < 0)
             botonanterior.setVisible(false);
-        }
-        if (lista.getVector()[lista.getIndice() + 1] != null) {
+        if(lista.getVector()[lista.getIndice()+1] != null)
             botonsiguiente.setVisible(true);
-        }
     }
 
     /**
@@ -83,9 +82,8 @@ public class Visualizar extends javax.swing.JPanel {
         areafecha = new javax.swing.JTextField();
         areasaldo = new javax.swing.JTextField();
         areasaldominimo = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        botonanterior = new javax.swing.JButton();
         botonsiguiente = new javax.swing.JButton();
+        botonanterior = new javax.swing.JButton();
 
         jLabel1.setText("Numero de Cuenta:");
 
@@ -109,26 +107,46 @@ public class Visualizar extends javax.swing.JPanel {
             }
         });
 
+        botonsiguiente.setText("SIGUIENTE");
+        botonsiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonsiguienteActionPerformed(evt);
+            }
+        });
+
+        botonanterior.setText("ANTERIOR");
+        botonanterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonanteriorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1))
-                .addGap(82, 82, 82)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(areasaldominimo)
-                    .addComponent(areanumero, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(areasaldo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(areapropietario, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(areafecha, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44))
+                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(areapropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(areafecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(areanumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(areasaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(areasaldominimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonanterior)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonsiguiente)))
+                .addGap(81, 81, 81))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,75 +160,52 @@ public class Visualizar extends javax.swing.JPanel {
                     .addComponent(areapropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(areasaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(areasaldominimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(areasaldominimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(areafecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
-
-        botonanterior.setText("ANTERIOR");
-        botonanterior.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonanteriorActionPerformed(evt);
-            }
-        });
-
-        botonsiguiente.setText("SIGUIENTE");
-        botonsiguiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonsiguienteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(botonanterior)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
-                .addComponent(botonsiguiente))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonanterior)
-                    .addComponent(botonsiguiente))
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonsiguiente)
+                    .addComponent(botonanterior))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 258, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 318, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 70, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void areapropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areapropietarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_areapropietarioActionPerformed
 
     private void botonanteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonanteriorActionPerformed
         anterior(lista);
@@ -223,10 +218,6 @@ public class Visualizar extends javax.swing.JPanel {
     private void areanumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areanumeroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_areanumeroActionPerformed
-
-    private void areapropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areapropietarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_areapropietarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -243,6 +234,5 @@ public class Visualizar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
