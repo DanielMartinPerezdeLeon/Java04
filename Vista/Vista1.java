@@ -173,6 +173,11 @@ public class Vista1 extends javax.swing.JFrame {
         Insertar.add(menucorriente);
 
         menuinversion.setText("Cuenta de Inversion");
+        menuinversion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuinversionActionPerformed(evt);
+            }
+        });
         Insertar.add(menuinversion);
 
         jMenuBar1.add(Insertar);
@@ -253,28 +258,6 @@ public class Vista1 extends javax.swing.JFrame {
         Visualizar visualizar = new Visualizar(lista);
         actualizarPanel(visualizar);
     }//GEN-LAST:event_VisualizarMouseClicked
-    
-    
-    private void OrdenarMouseClicked(java.awt.event.MouseEvent evt) {                                     
-        Lista auxLis = lista;
-        int i = 0;
-        boolean fin = false;
-        while (fin != true) {
-            System.out.println(auxLis.getVector()[i].getIndiceNodo());
-            if (auxLis.getVector()[i + 1] == null) {
-                System.out.println("Fin");
-                fin = true;
-            } else {
-                if (auxLis.getVector()[i].getIndiceNodo() > auxLis.getVector()[i + 1].getIndiceNodo()) {
-                    System.out.println("Cambio");
-                    Nodo auxNod = auxLis.getVector()[i];
-                    auxLis.getVector()[i] = auxLis.getVector()[i + 1];
-                    auxLis.getVector()[i + 1] = auxNod;
-                }
-                i++;
-            }
-        }
-    }//GEN-LAST:event_OrdenarMouseClicked
 
     private void menucorrienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menucorrienteActionPerformed
         Insertar insertar= new Insertar(lista,2);
@@ -288,6 +271,11 @@ public class Vista1 extends javax.swing.JFrame {
 
     private void menuahorroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuahorroMouseClicked
     }//GEN-LAST:event_menuahorroMouseClicked
+
+    private void menuinversionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuinversionActionPerformed
+        Insertar insertar= new Insertar(lista,3);
+        actualizarPanel(insertar);
+    }//GEN-LAST:event_menuinversionActionPerformed
 
     /**
      * @param args the command line arguments

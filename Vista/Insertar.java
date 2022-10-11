@@ -8,6 +8,8 @@ import Controlador.Lista;
 import java.util.GregorianCalendar;
 import java.util.Random;
 import modelo.CuentaAhorro;
+import modelo.CuentaCorriente;
+import modelo.CuentaInversion;
 
 /**
  *
@@ -24,15 +26,35 @@ public class Insertar extends javax.swing.JPanel {
     public Insertar(Lista lis, int t) {
         initComponents();
 
-        lista=lis;
+        lista = lis;
         tipo = t;
         botonestudiante.setVisible(false);
+        botonanual.setVisible(false);
+        botonsemestral.setVisible(false);
 
         switch (t) {
             case 1: { //Ahorro
                 botonestudiante.setVisible(true);
-                textvar1.setText("Interes anual");
-                areavar1.setText("%");
+                textvar1.setText("Interes anual (%):");
+                areavar1.setText("");
+                System.out.println(textvar1.getAlignmentY());
+                break;
+            }
+            case 2: {   //Corriente
+                botonanual.setVisible(true);
+                botonsemestral.setVisible(true);
+                botonanual.setSelected(true);
+                textvar1.setVisible(true);
+                areavar1.setVisible(true);
+                textvar1.setText("Comision:");
+                areavar1.setText("");
+                break;
+            }
+            case 3: {   //Inversion
+                botonestudiante.setVisible(true);
+                textvar1.setVisible(false);
+                areavar1.setVisible(false);
+                break;
             }
         }
     }
@@ -46,6 +68,7 @@ public class Insertar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -58,6 +81,8 @@ public class Insertar extends javax.swing.JPanel {
         botonestudiante = new javax.swing.JCheckBox();
         textvar1 = new javax.swing.JLabel();
         areavar1 = new javax.swing.JTextField();
+        botonanual = new javax.swing.JRadioButton();
+        botonsemestral = new javax.swing.JRadioButton();
 
         jLabel2.setText("Propietario:");
 
@@ -97,6 +122,22 @@ public class Insertar extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(botonanual);
+        botonanual.setText("Anual");
+        botonanual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonanualActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(botonsemestral);
+        botonsemestral.setText("Semestral");
+        botonsemestral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonsemestralActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,18 +153,20 @@ public class Insertar extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(botonestudiante)
                             .addComponent(textvar1))
-                        .addGap(115, 115, 115)
+                        .addGap(123, 123, 123)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(areavar1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(areasaldominimo, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(areasaldo, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(areapropietario, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(areafecha, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))))
+                            .addComponent(botonsemestral)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(areasaldominimo)
+                                .addComponent(areasaldo)
+                                .addComponent(areapropietario)
+                                .addComponent(areafecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                .addComponent(botonanual))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
+                        .addGap(162, 162, 162)
                         .addComponent(jButton1)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,15 +190,19 @@ public class Insertar extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(areafecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(areavar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textvar1))
-                .addGap(26, 26, 26)
-                .addComponent(botonestudiante)
-                .addGap(37, 37, 37)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonanual)
+                    .addComponent(botonestudiante))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonsemestral)
+                .addGap(19, 19, 19)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -191,11 +238,71 @@ public class Insertar extends javax.swing.JPanel {
 
                     GregorianCalendar fechafinal = new GregorianCalendar(fecha[0], fecha[1], fecha[2]); //le decimos la fecha con los datros
 
-                    aux = new CuentaAhorro(sald, minsald, propie, inter, estud, fechafinal);
+                    aux = new CuentaAhorro(sald, minsald, propie, fechafinal, inter, estud);
 
                 }
-                
+
                 lista.insertar(aux, aleatorio.nextInt(999) + 1);
+                System.out.println("Cuenta introducida correctamente");
+            }
+
+            case 2: {
+                CuentaCorriente aux;
+                Random aleatorio = new Random();
+
+                String propie = areapropietario.getText();
+                int sald = Integer.parseInt(areasaldo.getText());
+                int minsald = Integer.parseInt(areasaldominimo.getText());
+                int comi = Integer.parseInt(areavar1.getText());
+                boolean tipo = botonsemestral.isSelected();
+
+                if (areafecha.getText().equalsIgnoreCase("")) { //Si el usuario ha dejado la fecha vacia
+                    aux = new CuentaCorriente(sald, minsald, propie, comi, tipo);   //se crea con la fecha del sistema
+                } else {  //si no
+                    int[] fecha = new int[3];
+                    String[] fechatexto = areafecha.getText().split("/", 3);  //divide cada dato de la fecha escrita en un array
+
+                    for (int i = 0; i < 3; i++) {
+                        fecha[i] = Integer.parseInt(fechatexto[i]);   //Pasamos la array a una de ints
+                    }
+
+                    GregorianCalendar fechafinal = new GregorianCalendar(fecha[0], fecha[1], fecha[2]); //le decimos la fecha con los datros
+
+                    aux = new CuentaCorriente( sald, minsald, propie, fechafinal, comi, tipo);
+
+                }
+
+                lista.insertar(aux, aleatorio.nextInt(999) + 1);
+                System.out.println("Cuenta introducida correctamente");
+
+            }
+            case 3: {
+                CuentaInversion aux;
+                Random aleatorio = new Random();
+
+                String propie = areapropietario.getText();
+                int sald = Integer.parseInt(areasaldo.getText());
+                int minsald = Integer.parseInt(areasaldominimo.getText());
+                boolean estud = botonestudiante.isSelected();
+
+                if (areafecha.getText().equalsIgnoreCase("")) { //Si el usuario ha dejado la fecha vacia
+                    aux = new CuentaInversion( sald, minsald, propie, estud);   //se crea con la fecha del sistema
+                } else {  //si no
+                    int[] fecha = new int[3];
+                    String[] fechatexto = areafecha.getText().split("/", 3);  //divide cada dato de la fecha escrita en un array
+
+                    for (int i = 0; i < 3; i++) {
+                        fecha[i] = Integer.parseInt(fechatexto[i]);   //Pasamos la array a una de ints
+                    }
+
+                    GregorianCalendar fechafinal = new GregorianCalendar(fecha[0], fecha[1], fecha[2]); //le decimos la fecha con los datros
+
+                    aux = new CuentaInversion(sald, minsald, propie, fechafinal, estud);
+
+                }
+
+                lista.insertar(aux, aleatorio.nextInt(999) + 1);
+                System.out.println("Cuenta introducida correctamente");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -204,6 +311,14 @@ public class Insertar extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_areavar1ActionPerformed
 
+    private void botonanualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonanualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonanualActionPerformed
+
+    private void botonsemestralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonsemestralActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonsemestralActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField areafecha;
@@ -211,7 +326,10 @@ public class Insertar extends javax.swing.JPanel {
     private javax.swing.JTextField areasaldo;
     private javax.swing.JTextField areasaldominimo;
     private javax.swing.JTextField areavar1;
+    private javax.swing.JRadioButton botonanual;
     private javax.swing.JCheckBox botonestudiante;
+    private javax.swing.JRadioButton botonsemestral;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
