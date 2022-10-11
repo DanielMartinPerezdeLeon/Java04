@@ -213,11 +213,13 @@ public class Vista1 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_GuardarActionPerformed
 
-    private void GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarMouseClicked
+    private void GuardarMouseClicked(java.awt.event.MouseEvent evt) {                                     
         try {
             ObjectOutputStream guardalista = new ObjectOutputStream(new FileOutputStream(new File("cuentas.dat")));
 
-            guardalista.writeObject(lista);
+            for (int i = 0; lista.getVector()[i] != null && i < lista.getVector().length; i++) {
+                guardalista.writeObject(lista.getVector()[i].getDatos());
+            }
 
             guardalista.close();
             System.out.println("Guardado correctamente");
@@ -226,26 +228,27 @@ public class Vista1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_GuardarMouseClicked
 
-    private void CargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CargarMouseClicked
+    private void CargarMouseClicked(java.awt.event.MouseEvent evt) {                                    
         try {
             ObjectInputStream cargalista = new ObjectInputStream(new FileInputStream(new File("cuentas.dat")));
             Random aleatorio = new Random();
 
-            Lista listaAux = (Lista) cargalista.readObject();
-            cargalista.close();
-
-            for (int i = 0; listaAux.getVector()[i] != null && i < listaAux.getVector().length; i++) {
-                lista.insertar(listaAux.getVector()[i].getDatos(), aleatorio.nextInt(999) + 1);
+            for (int i = 0; ; i++) {
+                try{
+                    lista.insertar(cargalista.readObject(), aleatorio.nextInt(99) + 1);
+                }
+                catch(EOFException e){
+                    System.out.println("Fichero Cargado");
+                    break;
+                }
             }
-
-            System.out.println("Cargado correctamente");
         } catch (IOException ex) {
             System.err.println("Error grave");
         } catch (ClassNotFoundException ex) {
             System.out.println("No se ha encontrado la clase");
         }
 
-        lista.decirDatos();
+        lista.decirDatos(); //Muestra el codigo
     }//GEN-LAST:event_CargarMouseClicked
 
     private void InsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InsertarMouseClicked
