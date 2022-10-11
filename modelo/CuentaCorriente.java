@@ -16,8 +16,8 @@ public class CuentaCorriente extends Cuenta {
     final boolean SEMESTRAL = true;
     final boolean ANUAL = false;
 
-    int comision;
-    boolean tipoComision;
+    private float comision;
+    private boolean tipoComision;
 
     public CuentaCorriente() {
         super();
@@ -25,20 +25,20 @@ public class CuentaCorriente extends Cuenta {
         this.tipoComision = SEMESTRAL;
     }
 
-    public CuentaCorriente(int comision, boolean tipoComision, int saldo, int saldominimo, String propietario) {
+    public CuentaCorriente(int saldo, int saldominimo, String propietario, int comision, boolean tipoComision) {
         super(saldo, saldominimo, propietario);
         this.comision = comision;
         this.tipoComision = tipoComision;
     }
 
-    public CuentaCorriente(int comision, boolean tipoComision, int saldo, int saldominimo, String propietario, GregorianCalendar fecha) {
+    public CuentaCorriente(int saldo, int saldominimo, String propietario, GregorianCalendar fecha, int comision, boolean tipoComision) {
         super(saldo, saldominimo, propietario, fecha);
         this.comision = comision;
         this.tipoComision = tipoComision;
     }
 
     //GETTER
-    public int getComision() {
+    public float getComision() {
         return comision;
     }
 

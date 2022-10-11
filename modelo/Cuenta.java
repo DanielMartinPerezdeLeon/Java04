@@ -2,6 +2,7 @@ package modelo;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
@@ -9,7 +10,7 @@ import java.util.Random;
  *
  * @author damar
  */
-public class Cuenta implements Serializable,IFecha{
+public class Cuenta implements Serializable{
 
     private int numero;
     private transient String propietario;
@@ -44,22 +45,6 @@ public class Cuenta implements Serializable,IFecha{
         if(saldo<saldoMinimo){
             throw new Error("Error. El saldo es inferior al saldo minimo.");
         }
-    }
-    
-    
-    public int dia() {
-        GregorianCalendar fechaActual = new GregorianCalendar();
-        return fechaActual.get(DIA_DEL_MES);
-    }
-
-    public int mes() {
-        GregorianCalendar fechaActual = new GregorianCalendar();
-        return fechaActual.get(MES_DEL_ANO) + 1;
-    }
-
-    public int ano() {
-        GregorianCalendar fechaActual = new GregorianCalendar();
-        return fechaActual.get(ANO);
     }
 
     //GETTER

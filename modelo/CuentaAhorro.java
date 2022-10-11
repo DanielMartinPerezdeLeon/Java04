@@ -23,7 +23,7 @@ public class CuentaAhorro extends Cuenta {
         this.estudiante = estudiante;
     }
 
-    public CuentaAhorro(int saldo, int saldominimo, String propietario, float interesmensual, boolean estudiante, GregorianCalendar fecha) { //Si se da una fecha
+    public CuentaAhorro(int saldo, int saldominimo, String propietario, GregorianCalendar fecha, float interesmensual, boolean estudiante) { //Si se da una fecha
         super(saldo, saldominimo, propietario, fecha);  //Llama al constructor padre
         this.interesmensual = interesmensual;
         this.estudiante = estudiante;

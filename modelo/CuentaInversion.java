@@ -18,8 +18,8 @@ public class CuentaInversion extends Cuenta {
     final int MAXIMO = 10;
     final int MINIMO = -10;
 
-    int beneficio;
-    boolean estudiante;
+    private int beneficio;
+    private boolean estudiante;
 
     public CuentaInversion() {
         super();
@@ -29,7 +29,7 @@ public class CuentaInversion extends Cuenta {
         this.estudiante = false;
     }
 
-    public CuentaInversion(boolean estudiante, int saldo, int saldoMinimo, String propietario) {
+    public CuentaInversion(int saldo, int saldoMinimo, String propietario,  boolean estudiante) {
         super(saldo, saldoMinimo, propietario);
         Random aleatorio = new Random();
         int ran = MINIMO + aleatorio.nextInt() % MAXIMO - MINIMO + 1;
@@ -37,7 +37,7 @@ public class CuentaInversion extends Cuenta {
         this.estudiante = estudiante;
     }
 
-    public CuentaInversion(boolean estudiante, int saldo, int saldoMinimo, String propietario, GregorianCalendar fecha) {
+    public CuentaInversion(int saldo, int saldoMinimo, String propietario, GregorianCalendar fecha,  boolean estudiante) {
         super(saldo, saldoMinimo, propietario, fecha);
         Random aleatorio = new Random();
         int ran = MINIMO + aleatorio.nextInt() % MAXIMO - MINIMO + 1;
