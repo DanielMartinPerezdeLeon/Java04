@@ -27,12 +27,18 @@ public class Cuenta implements Serializable{
         this.fecha = new GregorianCalendar();
     }
 
-    public Cuenta(int saldo, int saldoMinimo, String propietario) {
+    public Cuenta(int saldo, int saldoMinimo, String propietario) throws Error {
         this();
         this.propietario = propietario;
-        comprobarSaldo(saldo, saldoMinimo);
-        this.saldoMinimo = saldoMinimo;
-        this.saldo = saldo;
+        try{
+            comprobarSaldo(saldo, saldoMinimo);
+            this.saldoMinimo = saldoMinimo;
+            this.saldo = saldo;
+        } catch(Error e){
+            throw e;
+        }
+        
+        
     }
 
     public Cuenta(int saldo, int saldominimo, String propietario, GregorianCalendar fecha) {
@@ -66,6 +72,12 @@ public class Cuenta implements Serializable{
 
     public GregorianCalendar getFecha() {
         return fecha;
+    }
+    
+    public String fechaString() {
+        return this.fecha.get(Calendar.DAY_OF_MONTH) + "/" //Dia
+                + (this.fecha.get(Calendar.MONTH)) + "/" //Mes
+                + this.fecha.get(Calendar.YEAR);            //Año
     }
 
     //SETTER

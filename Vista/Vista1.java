@@ -1,6 +1,7 @@
 package Vista;
 
 import Controlador.Lista;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,6 +12,9 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Cuenta;
+import modelo.CuentaAhorro;
+import modelo.CuentaCorriente;
+import modelo.CuentaInversion;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -39,6 +43,9 @@ public class Vista1 extends javax.swing.JFrame {
     public static void añadirEjemplos(Lista<Cuenta> lista) {    //Añade unas cuentas a la lista
         lista.insertar(new Cuenta(1200, 1, "Antonio"), 1);
         lista.insertar(new Cuenta(150, 1, "Dani"), 2);
+        lista.insertar(new CuentaAhorro(1500, 1, "Carlos", 12, true), 3);
+        lista.insertar(new CuentaCorriente(2450, 1, "Pablo", 23, true), 4);
+        lista.insertar(new CuentaInversion(380, 1, "Alvaro", true), 5);
 
     }
     
@@ -226,7 +233,7 @@ public class Vista1 extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.err.println("Error grave");
         }
-    }//GEN-LAST:event_GuardarMouseClicked
+    }                                    
 
     private void CargarMouseClicked(java.awt.event.MouseEvent evt) {                                    
         try {
@@ -249,7 +256,7 @@ public class Vista1 extends javax.swing.JFrame {
         }
 
         lista.decirDatos(); //Muestra el codigo
-    }//GEN-LAST:event_CargarMouseClicked
+    }                                   
 
     private void InsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InsertarMouseClicked
     }//GEN-LAST:event_InsertarMouseClicked

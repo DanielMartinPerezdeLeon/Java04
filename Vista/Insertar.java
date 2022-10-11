@@ -37,7 +37,6 @@ public class Insertar extends javax.swing.JPanel {
                 botonestudiante.setVisible(true);
                 textvar1.setText("Interes anual (%):");
                 areavar1.setText("");
-                System.out.println(textvar1.getAlignmentY());
                 break;
             }
             case 2: {   //Corriente
@@ -215,95 +214,103 @@ public class Insertar extends javax.swing.JPanel {
     }//GEN-LAST:event_areafechaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        switch (tipo) {
-            case 1: {
-                CuentaAhorro aux;
-                Random aleatorio = new Random();
+        try{
+        
+            switch (tipo) {
+                case 1: {
+                    CuentaAhorro aux;
+                    Random aleatorio = new Random();
 
-                String propie = areapropietario.getText();
-                int sald = Integer.parseInt(areasaldo.getText());
-                int minsald = Integer.parseInt(areasaldominimo.getText());
-                boolean estud = botonestudiante.isSelected();
-                int inter = Integer.parseInt(areavar1.getText());
+                    String propie = areapropietario.getText();
+                    int sald = Integer.parseInt(areasaldo.getText());
+                    int minsald = Integer.parseInt(areasaldominimo.getText());
+                    boolean estud = botonestudiante.isSelected();
+                    int inter = Integer.parseInt(areavar1.getText());
 
-                if (areafecha.getText().equalsIgnoreCase("")) { //Si el usuario ha dejado la fecha vacia
-                    aux = new CuentaAhorro(sald, minsald, propie, inter, estud);   //se crea con la fecha del sistema
-                } else {  //si no
-                    int[] fecha = new int[3];
-                    String[] fechatexto = areafecha.getText().split("/", 3);  //divide cada dato de la fecha escrita en un array
+                    if (areafecha.getText().equalsIgnoreCase("")) { //Si el usuario ha dejado la fecha vacia
+                        aux = new CuentaAhorro(sald, minsald, propie, inter, estud);   //se crea con la fecha del sistema
+                    } else {  //si no
+                        int[] fecha = new int[3];
+                        String[] fechatexto = areafecha.getText().split("/", 3);  //divide cada dato de la fecha escrita en un array
 
-                    for (int i = 0; i < 3; i++) {
-                        fecha[i] = Integer.parseInt(fechatexto[i]);   //Pasamos la array a una de ints
+                        for (int i = 0; i < 3; i++) {
+                            fecha[i] = Integer.parseInt(fechatexto[i]);   //Pasamos la array a una de ints
+                        }
+
+                        GregorianCalendar fechafinal = new GregorianCalendar(fecha[2], fecha[1], fecha[0]); //le decimos la fecha con los datros
+
+                        aux = new CuentaAhorro(sald, minsald, propie, fechafinal, inter, estud);
+
                     }
 
-                    GregorianCalendar fechafinal = new GregorianCalendar(fecha[0], fecha[1], fecha[2]); //le decimos la fecha con los datros
-
-                    aux = new CuentaAhorro(sald, minsald, propie, fechafinal, inter, estud);
-
+                    lista.insertar(aux, aleatorio.nextInt(999) + 1);
+                    System.out.println("Cuenta introducida correctamente");
+                    break;
                 }
 
-                lista.insertar(aux, aleatorio.nextInt(999) + 1);
-                System.out.println("Cuenta introducida correctamente");
-            }
+                case 2: {
+                    CuentaCorriente aux;
+                    Random aleatorio = new Random();
 
-            case 2: {
-                CuentaCorriente aux;
-                Random aleatorio = new Random();
+                    String propie = areapropietario.getText();
+                    int sald = Integer.parseInt(areasaldo.getText());
+                    int minsald = Integer.parseInt(areasaldominimo.getText());
+                    int comi = Integer.parseInt(areavar1.getText());
+                    boolean tipo = botonsemestral.isSelected();
 
-                String propie = areapropietario.getText();
-                int sald = Integer.parseInt(areasaldo.getText());
-                int minsald = Integer.parseInt(areasaldominimo.getText());
-                int comi = Integer.parseInt(areavar1.getText());
-                boolean tipo = botonsemestral.isSelected();
+                    if (areafecha.getText().equalsIgnoreCase("")) { //Si el usuario ha dejado la fecha vacia
+                        aux = new CuentaCorriente(sald, minsald, propie, comi, tipo);   //se crea con la fecha del sistema
+                    } else {  //si no
+                        int[] fecha = new int[3];
+                        String[] fechatexto = areafecha.getText().split("/", 3);  //divide cada dato de la fecha escrita en un array
 
-                if (areafecha.getText().equalsIgnoreCase("")) { //Si el usuario ha dejado la fecha vacia
-                    aux = new CuentaCorriente(sald, minsald, propie, comi, tipo);   //se crea con la fecha del sistema
-                } else {  //si no
-                    int[] fecha = new int[3];
-                    String[] fechatexto = areafecha.getText().split("/", 3);  //divide cada dato de la fecha escrita en un array
+                        for (int i = 0; i < 3; i++) {
+                            fecha[i] = Integer.parseInt(fechatexto[i]);   //Pasamos la array a una de ints
+                        }
 
-                    for (int i = 0; i < 3; i++) {
-                        fecha[i] = Integer.parseInt(fechatexto[i]);   //Pasamos la array a una de ints
+                        GregorianCalendar fechafinal = new GregorianCalendar(fecha[2], fecha[1], fecha[0]); //le decimos la fecha con los datros
+
+                        aux = new CuentaCorriente( sald, minsald, propie, fechafinal, comi, tipo);
+
                     }
 
-                    GregorianCalendar fechafinal = new GregorianCalendar(fecha[0], fecha[1], fecha[2]); //le decimos la fecha con los datros
-
-                    aux = new CuentaCorriente( sald, minsald, propie, fechafinal, comi, tipo);
-
+                    lista.insertar(aux, aleatorio.nextInt(999) + 1);
+                    System.out.println("Cuenta introducida correctamente");
+                    break;
                 }
+                case 3: {
+                    CuentaInversion aux;
+                    Random aleatorio = new Random();
 
-                lista.insertar(aux, aleatorio.nextInt(999) + 1);
-                System.out.println("Cuenta introducida correctamente");
+                    String propie = areapropietario.getText();
+                    int sald = Integer.parseInt(areasaldo.getText());
+                    int minsald = Integer.parseInt(areasaldominimo.getText());
+                    boolean estud = botonestudiante.isSelected();
 
-            }
-            case 3: {
-                CuentaInversion aux;
-                Random aleatorio = new Random();
+                    if (areafecha.getText().equalsIgnoreCase("")) { //Si el usuario ha dejado la fecha vacia
+                        aux = new CuentaInversion( sald, minsald, propie, estud);   //se crea con la fecha del sistema
+                    } else {  //si no
+                        int[] fecha = new int[3];
+                        String[] fechatexto = areafecha.getText().split("/", 3);  //divide cada dato de la fecha escrita en un array
 
-                String propie = areapropietario.getText();
-                int sald = Integer.parseInt(areasaldo.getText());
-                int minsald = Integer.parseInt(areasaldominimo.getText());
-                boolean estud = botonestudiante.isSelected();
+                        for (int i = 0; i < 3; i++) {
+                            fecha[i] = Integer.parseInt(fechatexto[i]);   //Pasamos la array a una de ints
+                        }
 
-                if (areafecha.getText().equalsIgnoreCase("")) { //Si el usuario ha dejado la fecha vacia
-                    aux = new CuentaInversion( sald, minsald, propie, estud);   //se crea con la fecha del sistema
-                } else {  //si no
-                    int[] fecha = new int[3];
-                    String[] fechatexto = areafecha.getText().split("/", 3);  //divide cada dato de la fecha escrita en un array
+                        GregorianCalendar fechafinal = new GregorianCalendar(fecha[2], fecha[1], fecha[0]); //le decimos la fecha con los datros
 
-                    for (int i = 0; i < 3; i++) {
-                        fecha[i] = Integer.parseInt(fechatexto[i]);   //Pasamos la array a una de ints
+                        aux = new CuentaInversion(sald, minsald, propie, fechafinal, estud);
+
                     }
 
-                    GregorianCalendar fechafinal = new GregorianCalendar(fecha[0], fecha[1], fecha[2]); //le decimos la fecha con los datros
-
-                    aux = new CuentaInversion(sald, minsald, propie, fechafinal, estud);
-
+                    lista.insertar(aux, aleatorio.nextInt(999) + 1);
+                    System.out.println("Cuenta introducida correctamente");
+                    break;
                 }
 
-                lista.insertar(aux, aleatorio.nextInt(999) + 1);
-                System.out.println("Cuenta introducida correctamente");
             }
+        }catch(Error e){
+            System.err.println("Error. El saldo es inferior al saldo minimo.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

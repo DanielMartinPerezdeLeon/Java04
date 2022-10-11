@@ -39,7 +39,7 @@ public class Visualizar extends javax.swing.JPanel {
         }
         areasaldo.setText(Float.toString(c.getSaldo()));
         areasaldominimo.setText(Float.toString(c.getSaldominimo()));
-        areafecha.setText("Arreglar");//-----------------------------------------------------------
+        areafecha.setText(c.fechaString());
         
         if(c.getClass() == CuentaAhorro.class){
             CuentaAhorro cAux = (CuentaAhorro) c;
