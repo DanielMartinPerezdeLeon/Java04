@@ -1,6 +1,7 @@
 package Vista;
 
 import Controlador.Lista;
+import Controlador.Nodo;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,7 +44,7 @@ public class Vista1 extends javax.swing.JFrame {
     public static void añadirEjemplos(Lista<Cuenta> lista) {    //Añade unas cuentas a la lista
         lista.insertar(new Cuenta(1200, 1, "Antonio"), 1);
         lista.insertar(new Cuenta(150, 1, "Dani"), 2);
-        lista.insertar(new CuentaAhorro(1500, 1, "Carlos", 12, true), 3);
+        lista.insertar(new CuentaAhorro(1500, 1, "Carlos", 12, true), 8);
         lista.insertar(new CuentaCorriente(2450, 1, "Pablo", 23, true), 4);
         lista.insertar(new CuentaInversion(380, 1, "Alvaro", true), 5);
 
@@ -198,6 +199,11 @@ public class Vista1 extends javax.swing.JFrame {
         jMenuBar1.add(Visualizar);
 
         Ordenar.setText("Ordenar");
+        Ordenar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrdenarMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(Ordenar);
 
         setJMenuBar(jMenuBar1);
@@ -283,6 +289,20 @@ public class Vista1 extends javax.swing.JFrame {
         Insertar insertar= new Insertar(lista,3);
         actualizarPanel(insertar);
     }//GEN-LAST:event_menuinversionActionPerformed
+
+    private void OrdenarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdenarMouseClicked
+        
+        for (int x = 0; lista.getVector()[x] != null && x < lista.getVector().length ; x++) {
+            for (int y = 0; lista.getVector()[y+1] != null && y < lista.getVector().length - 1; y++) {
+                Nodo elementoActual = lista.getVector()[y], elementoSiguiente = lista.getVector()[y + 1];
+                if (elementoActual.getIndiceNodo() > elementoSiguiente.getIndiceNodo()) {
+                    // Intercambiar
+                    lista.getVector()[y] = elementoSiguiente;
+                    lista.getVector()[y + 1] = elementoActual;
+                }
+            }
+        }
+    }//GEN-LAST:event_OrdenarMouseClicked
 
     /**
      * @param args the command line arguments
