@@ -36,6 +36,7 @@
         (incremento o decremento y cantidades).
 
 7.- La aplicación también permitirá ordenar la lista con los siguientes pasos:  -- Arreglar
+    
     7.1.- Primero completará la lista con 100.000 cuentas aleatorias con números mayores a 1000.
     
     7.2.- Seguidamente, implementa una collections y copiará la lista original en ella.
