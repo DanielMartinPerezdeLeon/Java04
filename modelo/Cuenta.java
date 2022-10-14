@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Random;
+import static modelo.IFecha.ANO;
+import static modelo.IFecha.DIA_DEL_MES;
+import static modelo.IFecha.MES_DEL_ANO;
 
 /**
  *
@@ -100,5 +103,17 @@ public class Cuenta implements Serializable{
     public void setFecha(GregorianCalendar fecha) {
         this.fecha = fecha;
     }
+    
+    //FECHA
+    public int dia() {
+        return this.fecha.get(DIA_DEL_MES);
+    }
 
+    public int mes() {
+        return this.fecha.get(MES_DEL_ANO);
+    }
+
+    public int ano() {
+        return this.fecha.get(ANO);
+    }
 }

@@ -44,6 +44,12 @@ public class CuentaInversion extends Cuenta {
         this.beneficio = ran;
         this.estudiante = estudiante;
     }
+    
+    public void calculoBeneficio() {
+        Random aleatorio = new Random();
+        int ran = MINIMO + aleatorio.nextInt() % MAXIMO - MINIMO + 1;
+        this.beneficio = ran;
+    }
 
     //GETTER
     public int getBeneficio() {

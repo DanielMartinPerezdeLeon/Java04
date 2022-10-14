@@ -5,10 +5,15 @@
 package Vista;
 
 import Controlador.Lista;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import modelo.Cuenta;
 import modelo.CuentaAhorro;
 import modelo.CuentaCorriente;
 import modelo.CuentaInversion;
+import static modelo.IFecha.ANO;
+import static modelo.IFecha.DIA_DEL_MES;
+import static modelo.IFecha.MES_DEL_ANO;
 
 /**
  *
@@ -146,8 +151,12 @@ public class Visualizar extends javax.swing.JPanel {
         ModificableTexto = new javax.swing.JLabel();
         ModificableBooleano = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        botonanterior = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        Calcular = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         botonsiguiente = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        botonanterior = new javax.swing.JButton();
 
         jLabel1.setText("Numero de Cuenta:");
 
@@ -180,7 +189,7 @@ public class Visualizar extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(ModificableBooleano)
@@ -240,12 +249,33 @@ public class Visualizar extends javax.swing.JPanel {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        botonanterior.setText("ANTERIOR");
-        botonanterior.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonanteriorActionPerformed(evt);
+        Calcular.setText("Calcular");
+        Calcular.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CalcularMouseClicked(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(Calcular)
+                    .addContainerGap(20, Short.MAX_VALUE)))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 51, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Calcular)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         botonsiguiente.setText("SIGUIENTE");
         botonsiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -254,23 +284,76 @@ public class Visualizar extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonsiguiente)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(botonsiguiente)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        botonanterior.setText("ANTERIOR");
+        botonanterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonanteriorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 119, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(18, 18, 18)
+                    .addComponent(botonanterior)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 51, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(botonanterior)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(botonanterior)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
-                .addComponent(botonsiguiente))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 306, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonanterior)
-                    .addComponent(botonsiguiente))
-                .addGap(25, 25, 25))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -315,8 +398,43 @@ public class Visualizar extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_areapropietarioActionPerformed
 
+    private void CalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalcularMouseClicked
+        Cuenta c = (Cuenta) lista.getVector()[lista.getIndice()].getDatos();
+
+        if (c.getClass() == CuentaAhorro.class) {
+            CuentaAhorro cAux = (CuentaAhorro) c;
+
+            if ((Calendar.MONTH > cAux.mes() && Calendar.DAY_OF_MONTH >= cAux.dia() && Calendar.YEAR == cAux.ano()) || (Calendar.YEAR > cAux.ano())) {
+                System.out.println("Funciona CuentaAhorro");
+                cAux.setSaldo(cAux.getSaldo() + (cAux.getSaldo() * cAux.getInteresmensual() / 100));
+                lista.getVector()[lista.getIndice()].setDatos(cAux);
+            }
+
+        } else if (c.getClass() == CuentaCorriente.class) {
+            CuentaCorriente cAux = (CuentaCorriente) c;
+
+            if ((Calendar.MONTH == cAux.mes() + 6 && Calendar.DAY_OF_MONTH >= cAux.dia() && Calendar.YEAR == cAux.ano()) || (Calendar.YEAR > cAux.ano())) {
+                System.out.println("Funciona CuentaCorriente");
+                cAux.setSaldo(cAux.getSaldo() - cAux.getComision());
+            }
+
+        } else if (c.getClass() == CuentaInversion.class) {
+            CuentaInversion cAux = (CuentaInversion) c;
+
+            if ((Calendar.MONTH >= cAux.mes() + 3 && Calendar.DAY_OF_MONTH >= cAux.dia() && Calendar.YEAR == cAux.ano()) || (Calendar.YEAR > cAux.ano())) {
+                System.out.println("Funciona CuentaInversion");
+                cAux.setSaldo(cAux.getSaldo() + cAux.getBeneficio());
+                cAux.calculoBeneficio();
+                lista.getVector()[lista.getIndice()].setDatos(cAux);
+            }
+
+        }
+        cambiarDatos((Cuenta) lista.getVector()[lista.getIndice()].getDatos());
+    }//GEN-LAST:event_CalcularMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Calcular;
     private javax.swing.JLabel ModificableBooleano;
     private javax.swing.JLabel ModificableTexto;
     private javax.swing.JTextField areaBooleano;
@@ -335,5 +453,8 @@ public class Visualizar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }

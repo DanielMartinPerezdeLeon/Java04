@@ -56,6 +56,5 @@ public class Lista <T> implements Serializable{
     public void setIndice(int indice) {
         this.indice = indice;
     }
-    
-    
+
 }
