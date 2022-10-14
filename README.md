@@ -45,7 +45,6 @@
         
     7.4.- Tras ordenar se podrán hacer un listado por consola, o mejor en el Jlist.
     
-8.- Estará estructura siguiendo el MVC, también los paquetes.
+8.- Estará estructura siguiendo el MVC, también los paquetes.  -- Hecho
 
-9.- Mejoras: Date Picker, Filechooser, refresco actualizaciones, control de errores, LookAndFeel, manejo de
-fechas, etc.
+9.- Mejoras: Date Picker, Filechooser, refresco actualizaciones, control de errores, LookAndFeel, manejo de fechas, etc.
