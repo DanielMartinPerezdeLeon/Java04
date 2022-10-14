@@ -5,7 +5,7 @@
     1.4.- Cuenta Inversión  -- Hecho
     1.5.- Cuenta Corriente  -- Hecho
 
-2.- interfaz sobre clase hijas para los cálculo con fechas. ---- Falta
+2.- interfaz sobre clase hijas para los cálculo con fechas. ---- Hecho
     2.1.- Tener los métodos para controlar si se cumplen meses, trimestres o años. Dichos métodos no
         tendrán parámetros y compararán la fecha de apertura de la cuenta y la fecha del sistema.
     2.2.- Tendrá las constantes de la clase Calendar (DAY_OF_MONTH, MONTH y YEAR) en español.
@@ -16,18 +16,18 @@
 
 5.- clases Lista y Nodo  -- Hecho
 
-6.- Implementa una aplicación gráfica con las siguientes opciones:
+6.- Implementa una aplicación gráfica con las siguientes opciones:  -- Hecho
     6.1.- Cargar datos del fichero a lista.  -- Hecho
     
     6.2.- Guardar datos de lista al fichero.  -- Hecho
     
     6.3.- Insertar o nuevo elemento (cuenta ahorro o corriente).  -- Hecho
         
-    6.4.- Visualizar en JList eĺ número, titular y saldo de todos los objetos indicando el tipo de cada uno  -- Trabajandose
+    6.4.- Visualizar en JList eĺ número, titular y saldo de todos los objetos indicando el tipo de cada uno  -- Hecho
         (cuenta ahorro, inversión o corriente).
         6.4.1.- Al seleccionar sobre cualquier elemento del Jlist veremos el resto de sus atributos.
         
-    6.5.- Visualizar uno a uno los elementos, con la posibilidad de operar solo sobre el visualizado.  -- Hecho / Falta calcular
+    6.5.- Visualizar uno a uno los elementos, con la posibilidad de operar solo sobre el visualizado.  -- Hecho
         6.5.1.- El botón calcular solamente estará activo sí se cumple el periodo para hacer el
         cálculo, es decir, si se cumple un mes para calcular el interés de las cuentas de ahorro y un
         trimestres para las cuentas de inversión y un semestre o un año para las cuentas corrientes.
