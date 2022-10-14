@@ -13,7 +13,7 @@ import static modelo.IFecha.MES_DEL_ANO;
  *
  * @author damar
  */
-public class Cuenta implements Serializable{
+public class Cuenta implements Serializable, IFecha{
 
     private int numero;
     private transient String propietario;

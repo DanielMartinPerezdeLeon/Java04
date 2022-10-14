@@ -9,14 +9,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.GregorianCalendar;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Cuenta;
-import modelo.CuentaAhorro;
-import modelo.CuentaCorriente;
-import modelo.CuentaInversion;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -45,9 +44,6 @@ public class Vista1 extends javax.swing.JFrame {
     public static void añadirEjemplos(Lista<Cuenta> lista) {    //Añade unas cuentas a la lista
         lista.insertar(new Cuenta(1200, 1, "Antonio"), 1);
         lista.insertar(new Cuenta(150, 1, "Dani"), 2);
-        lista.insertar(new CuentaAhorro(1500, 1, "Carlos", new GregorianCalendar(2022,9,10), 12, true), 8);
-        lista.insertar(new CuentaCorriente(2450, 1, "Pablo", new GregorianCalendar(2022,4,10), 23, true), 4);
-        lista.insertar(new CuentaInversion(380, 1, "Alvaro", new GregorianCalendar(2022,7,10), true), 5);
 
     }
     
@@ -55,6 +51,21 @@ public class Vista1 extends javax.swing.JFrame {
         this.setContentPane(panel);
         pack();
     }
+
+    public void ordenar(Lista lista){
+        for (int x = 0; lista.getVector()[x] != null && x < (lista.getVector().length-2) ; x++) {
+            for (int y = 0; lista.getVector()[y+1] != null && y < lista.getVector().length - 2; y++) {
+                Nodo elementoActual = lista.getVector()[y], elementoSiguiente = lista.getVector()[y + 1];
+                if (elementoActual.getIndiceNodo() > elementoSiguiente.getIndiceNodo()) {
+                    // Intercambiar
+                    lista.getVector()[y] = elementoSiguiente;
+                    lista.getVector()[y + 1] = elementoActual;
+                }
+            }
+        }
+    }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,6 +99,8 @@ public class Vista1 extends javax.swing.JFrame {
         menucorriente = new javax.swing.JMenuItem();
         menuinversion = new javax.swing.JMenuItem();
         Visualizar = new javax.swing.JMenu();
+        menulista = new javax.swing.JMenuItem();
+        menuindividual = new javax.swing.JMenuItem();
         Ordenar = new javax.swing.JMenu();
 
         jRadioButtonMenuItem1.setSelected(true);
@@ -197,6 +210,23 @@ public class Vista1 extends javax.swing.JFrame {
                 VisualizarMouseClicked(evt);
             }
         });
+
+        menulista.setText("Lista");
+        menulista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menulistaActionPerformed(evt);
+            }
+        });
+        Visualizar.add(menulista);
+
+        menuindividual.setText("Individual");
+        menuindividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuindividualActionPerformed(evt);
+            }
+        });
+        Visualizar.add(menuindividual);
+
         jMenuBar1.add(Visualizar);
 
         Ordenar.setText("Ordenar");
@@ -269,8 +299,7 @@ public class Vista1 extends javax.swing.JFrame {
     }//GEN-LAST:event_InsertarMouseClicked
 
     private void VisualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisualizarMouseClicked
-        Visualizar visualizar = new Visualizar(lista);
-        actualizarPanel(visualizar);
+
     }//GEN-LAST:event_VisualizarMouseClicked
 
     private void menucorrienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menucorrienteActionPerformed
@@ -291,18 +320,50 @@ public class Vista1 extends javax.swing.JFrame {
         actualizarPanel(insertar);
     }//GEN-LAST:event_menuinversionActionPerformed
 
+    private void menulistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menulistaActionPerformed
+        VisualizarLista visualizar = new VisualizarLista(lista);
+        actualizarPanel(visualizar);
+    }//GEN-LAST:event_menulistaActionPerformed
+
+    private void menuindividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuindividualActionPerformed
+        Visualizar visualizar = new Visualizar(lista);
+        actualizarPanel(visualizar);
+    }//GEN-LAST:event_menuindividualActionPerformed
+
     private void OrdenarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdenarMouseClicked
+        ordenar(lista);
+        System.out.println("Lista original ordenada");
         
-        for (int x = 0; lista.getVector()[x] != null && x < lista.getVector().length ; x++) {
-            for (int y = 0; lista.getVector()[y+1] != null && y < lista.getVector().length - 1; y++) {
-                Nodo elementoActual = lista.getVector()[y], elementoSiguiente = lista.getVector()[y + 1];
-                if (elementoActual.getIndiceNodo() > elementoSiguiente.getIndiceNodo()) {
-                    // Intercambiar
-                    lista.getVector()[y] = elementoSiguiente;
-                    lista.getVector()[y + 1] = elementoActual;
-                }
-            }
+        Lista l1= new Lista(100000);
+        Random aleatorio = new Random();
+        
+        
+        for(int i=0; i<100000;i++){
+            l1.insertar(new Cuenta(100,1,"prueba"),aleatorio.nextInt(999999)+1);
         }
+        
+        
+        System.out.println("Ordenando la lista de 100000 cuentas (tarda unos 5 minutos) tomate un cafe, echate un LOL");
+        long tiempo=System.currentTimeMillis();
+        ordenar(l1);
+        tiempo=System.currentTimeMillis()-tiempo;
+        System.out.println("Se ha ordenado una lista con 100000 cuentas. Ha tardado "+tiempo+"milisegundos");
+        
+        
+        ArrayList <Cuenta> l2= new <Cuenta> ArrayList();
+        for(int i=0; i<100000;i++){
+            l2.add(i, new Cuenta(100,1,"prueba"));
+        }
+        
+        tiempo=System.currentTimeMillis();
+        Collections.sort(l2, new Comparator<Cuenta>(){
+            @Override
+	public int compare(Cuenta p1, Cuenta p2) {
+		return new Integer(p1.getNumero()).compareTo(new Integer(p2.getNumero()));
+	}
+        });
+        tiempo=System.currentTimeMillis()-tiempo;
+        System.out.println("Se ha ordenado una lista con 100000 cuentas. Ha tardado "+tiempo+"milisegundos");
     }//GEN-LAST:event_OrdenarMouseClicked
 
     /**
@@ -341,6 +402,8 @@ public class Vista1 extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JMenuItem menuahorro;
     private javax.swing.JMenuItem menucorriente;
+    private javax.swing.JMenuItem menuindividual;
     private javax.swing.JMenuItem menuinversion;
+    private javax.swing.JMenuItem menulista;
     // End of variables declaration//GEN-END:variables
 }
