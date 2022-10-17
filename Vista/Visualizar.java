@@ -404,26 +404,41 @@ public class Visualizar extends javax.swing.JPanel {
 
         if (c.getClass() == CuentaAhorro.class) {
             CuentaAhorro cAux = (CuentaAhorro) c;
+            
+            //Mes
 
             if (((calend.get(MES_DEL_ANO) + 1) > cAux.mes() && calend.get(DIA_DEL_MES) >= cAux.dia() && calend.get(ANO) == cAux.ano()) || (calend.get(ANO) > cAux.ano())) {
-                cAux.setSaldo(cAux.getSaldo() + (cAux.getSaldo() * cAux.getInteresMensual() / 100));
-                lista.getVector()[lista.getIndice()].setDatos(cAux);
+                try{
+                    cAux.setSaldo(cAux.getSaldo() + (cAux.getSaldo() * cAux.getInteresMensual() / 100));
+                    lista.getVector()[lista.getIndice()].setDatos(cAux);
+                } catch(Error e){
+                    throw e;
+                }
             }
 
         } else if (c.getClass() == CuentaCorriente.class) {
             CuentaCorriente cAux = (CuentaCorriente) c;
+            
+            // Semestre o Año para las cuentas corrientes
 
             if (((calend.get(MES_DEL_ANO) + 1) == cAux.mes() + 6 && calend.get(DIA_DEL_MES) >= cAux.dia() && calend.get(ANO) == cAux.ano()) || (calend.get(ANO) > cAux.ano())) {
                 cAux.setSaldo(cAux.getSaldo() - cAux.getComision());
+                
             }
 
         } else if (c.getClass() == CuentaInversion.class) {
             CuentaInversion cAux = (CuentaInversion) c;
+            
+            //Trimestres
 
             if (((calend.get(MES_DEL_ANO) + 1) >= cAux.mes() + 3 && calend.get(DIA_DEL_MES) >= cAux.dia() && calend.get(ANO) == cAux.ano()) || (calend.get(ANO) > cAux.ano())) {
-                cAux.setSaldo(cAux.getSaldo() + cAux.getBeneficio());
-                cAux.calculoBeneficio();
-                lista.getVector()[lista.getIndice()].setDatos(cAux);
+                try{
+                    cAux.setSaldo(cAux.getSaldo() + cAux.getBeneficio());
+                    cAux.calculoBeneficio();
+                    lista.getVector()[lista.getIndice()].setDatos(cAux);
+                } catch(Error e){
+                    throw e;
+                }
             }
         }
         cambiarDatos((Cuenta) lista.getVector()[lista.getIndice()].getDatos());

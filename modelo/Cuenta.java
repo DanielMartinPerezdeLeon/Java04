@@ -50,7 +50,7 @@ public class Cuenta implements Serializable, IFecha{
 
     }
     
-    public void comprobarSaldo(int saldo, int saldoMinimo) throws Error{
+    public void comprobarSaldo(float saldo, float saldoMinimo) throws Error{
         if(saldo<saldoMinimo){
             throw new Error("Error. El saldo es inferior al saldo minimo.");
         }
@@ -92,8 +92,16 @@ public class Cuenta implements Serializable, IFecha{
         this.propietario = propietario;
     }
 
-    public void setSaldo(float saldo) {
-        this.saldo = saldo;
+    public void setSaldo(float saldo) throws Error {
+        
+        try{
+            comprobarSaldo(saldo, this.saldoMinimo);
+            this.saldo = saldo;
+        } catch(Error e){
+            throw e;
+        }
+        
+        
     }
 
     public void setSaldominimo(float saldominimo) {
