@@ -35,7 +35,7 @@
         6.5.2.- Al pulsarlo se modificará el saldo si procede y se informará de lo ocurrido con detalle
         (incremento o decremento y cantidades).
 
-7.- La aplicación también permitirá ordenar la lista con los siguientes pasos:  -- Arreglar
+7.- La aplicación también permitirá ordenar la lista con los siguientes pasos:  -- Hecho
     
     7.1.- Primero completará la lista con 100.000 cuentas aleatorias con números mayores a 1000.
     
